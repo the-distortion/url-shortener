@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb+srv://the_distortion:<password>@clusterurlshortener.c2qf7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    "baseURI": "http://domain.name/"
+}
