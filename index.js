@@ -6,6 +6,7 @@ const app = express()
 connectDB()
 
 app.use(express.json({ extended: false }))
+app.use(express.static('public'))
 
 // routes
 app.use('/', require("./routes/index"))
