@@ -1,6 +1,8 @@
 const input = document.querySelector("#longUrl")
 const button = document.querySelector("button")
 const form = document.querySelector("form")
+const after = document.querySelector(".after")
+const h1span = document.querySelector("h1 span")
 
 const handleSubmit = async e => {
     e.preventDefault()
@@ -24,16 +26,16 @@ const handleSubmit = async e => {
 form.addEventListener("submit", handleSubmit)
 
 input.addEventListener('focus', () => {
-    document.querySelector(".after").style.width = document.querySelector("h1 span").offsetWidth + "px"
+    after.style.width = h1span.offsetWidth + "px"
 })
 input.addEventListener('focusout', () => {
-    document.querySelector(".after").style.width = "100%"
+    after.style.width = "100%"
 })
 button.addEventListener('focus', () => {
-    document.querySelector(".after").style.width = document.querySelector("h1 span").offsetWidth + "px"
+    after.style.width = h1span.offsetWidth + "px"
 })
 button.addEventListener('focusout', () => {
-    document.querySelector(".after").style.width = "100%"
+    after.style.width = "100%"
 })
 
 // const sectionStyle = e => {

@@ -9,6 +9,10 @@
             #ff9671,
             #ffc75f,
             #f9f871);
+    --shadow-low-op: #4a98b599;
+    --shadow-high-op: #a7fed599;
+    --shadow-low: #4a98b5;
+    --shadow-high: #a7fed5;
 }
 
 *,
@@ -21,6 +25,13 @@
 
 body {
     background-color: #ddd;
+    background-image:
+        repeating-linear-gradient(45deg,
+            rgba(129, 129, 129, 0.06) 0px, rgba(129, 129, 129, 0.06) 5px,
+            transparent 5px, transparent 10px),
+        linear-gradient(45deg, rgb(155, 235, 196), transparent),
+        linear-gradient(90deg, rgb(152, 231, 193), transparent),
+        linear-gradient(90deg, rgb(97, 213, 255), rgb(97, 213, 255));
     display: grid;
     height: 100vh;
     place-items: center;
@@ -35,27 +46,30 @@ section {
     border-radius: 1rem;
     background-color: transparent;
     box-shadow:
-        5px 5px 20px #bebebe,
-        -5px -5px 20px #ffffff,
-        inset 5px 5px 20px #bebebe,
-        inset -5px -5px 20px #ffffff;
+        5px 5px 20px var(--shadow-low),
+        -5px -1px 20px var(--shadow-high),
+        inset 5px 5px 20px var(--shadow-low-op),
+        inset -5px -5px 20px var(--shadow-high-op);
     transition:
         box-shadow 0.5s ease-in-out,
         background-color 1s 0.2s ease-in-out,
+        backdrop-filter 0.45s ease-in-out,
         transform 0.45s ease-in-out;
+    backdrop-filter: blur(0);
     /* cubic-bezier(.68, .04, .5, 1.68); */
 }
 
 section:focus,
 section:focus-within,
 section:hover {
-    background-color: #fff2;
+    /* background-color: #fff2; */
     box-shadow:
-        10px 10px 30px #bebebe,
-        -7px -7px 20px #ffffff,
-        inset 5px 5px 25px #fff6,
-        inset -5px -5px 25px #bebebe99;
+        10px 10px 30px var(--shadow-low),
+        -7px -2px 20px var(--shadow-high),
+        inset 5px 5px 25px var(--shadow-high-op),
+        inset -5px -5px 25px var(--shadow-low-op);
     transform: scale(1.02);
+    backdrop-filter: blur(2px);
 }
 
 h1 span {
@@ -84,8 +98,8 @@ h1 {
     background-size: 400%;
     background-clip: text;
     -webkit-background-clip: text;
-    animation: gradMove 15s infinite alternate;
-    filter: drop-shadow(0 0 0.5px crimson);
+    animation: gradMove 10s infinite alternate;
+    filter: drop-shadow(0 0 0.5px rgba(220, 20, 60, 0.5));
 }
 
 .after {
@@ -117,7 +131,7 @@ form div {
     padding: .5rem 1.25rem;
     padding-right: 10.51rem;
     font-size: 1rem;
-    border: 0.1rem solid black;
+    border: 0.1rem solid rgba(97, 213, 255, 0.75);
     border-radius: 5rem;
     z-index: 2;
     pointer-events: none;
@@ -168,11 +182,12 @@ button {
     right: 0rem;
     appearance: none;
     outline: none;
-    border-radius: 0 10rem 10rem 0;
+    border-radius: 10rem;
+    /* 10rem 0; */
     border: none;
     font-size: 2rem;
     font-family: 'PT Sans Narrow', sans-serif;
-    color: #000b;
+    color: rgb(97, 213, 255);
     height: 3.4rem;
     width: 10.5rem;
     transition: background-color 0.1s ease-in-out;
