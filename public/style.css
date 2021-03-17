@@ -7,12 +7,18 @@
             #d65db1,
             #ff6f91,
             #ff9671,
-            #ffc75f,
-            #f9f871);
-    --shadow-low-op: #4a98b599;
-    --shadow-high-op: #a7fed599;
-    --shadow-low: #4a98b5;
-    --shadow-high: #a7fed5;
+            #ffc75f);
+    --textured-gradient:
+        repeating-linear-gradient(45deg,
+            rgba(175, 175, 175, 0.06) 0px, rgba(175, 175, 175, 0.06) 5px,
+            transparent 5px, transparent 10px),
+        linear-gradient(45deg, rgb(155, 235, 196), transparent),
+        linear-gradient(90deg, rgb(153, 238, 197), transparent),
+        linear-gradient(90deg, rgb(97, 213, 255), rgb(97, 213, 255));
+    --shadow-low-op: #4a99b5a9;
+    --shadow-high-op: #ccffe7;
+    --shadow-low: #6ca0b3;
+    --shadow-high: #fff;
 }
 
 *,
@@ -25,13 +31,6 @@
 
 body {
     background-color: #ddd;
-    background-image:
-        repeating-linear-gradient(45deg,
-            rgba(129, 129, 129, 0.06) 0px, rgba(129, 129, 129, 0.06) 5px,
-            transparent 5px, transparent 10px),
-        linear-gradient(45deg, rgb(155, 235, 196), transparent),
-        linear-gradient(90deg, rgb(152, 231, 193), transparent),
-        linear-gradient(90deg, rgb(97, 213, 255), rgb(97, 213, 255));
     display: grid;
     height: 100vh;
     place-items: center;
@@ -45,18 +44,19 @@ section {
     padding: 5rem;
     border-radius: 1rem;
     background-color: transparent;
+    background-image: var(--textured-gradient);
+    background-size: 110%;
+    background-position: left;
     box-shadow:
         5px 5px 20px var(--shadow-low),
-        -5px -1px 20px var(--shadow-high),
-        inset 5px 5px 20px var(--shadow-low-op),
-        inset -5px -5px 20px var(--shadow-high-op);
+        -5px -5px 20px var(--shadow-high),
+        inset 8px 8px 25px var(--shadow-low-op),
+        inset -8px -8px 25px var(--shadow-high-op);
     transition:
         box-shadow 0.5s ease-in-out,
         background-color 1s 0.2s ease-in-out,
-        backdrop-filter 0.45s ease-in-out,
+        background-position 0.45s ease-in-out,
         transform 0.45s ease-in-out;
-    backdrop-filter: blur(0);
-    /* cubic-bezier(.68, .04, .5, 1.68); */
 }
 
 section:focus,
@@ -65,11 +65,11 @@ section:hover {
     /* background-color: #fff2; */
     box-shadow:
         10px 10px 30px var(--shadow-low),
-        -7px -2px 20px var(--shadow-high),
+        -7px -7px 20px var(--shadow-high),
         inset 5px 5px 25px var(--shadow-high-op),
         inset -5px -5px 25px var(--shadow-low-op);
     transform: scale(1.02);
-    backdrop-filter: blur(2px);
+    background-position: right;
 }
 
 h1 span {
@@ -103,13 +103,13 @@ h1 {
 }
 
 .after {
-    border-top: 1px solid crimson;
+    border-top: 1px solid rgba(220, 20, 60, 0.658);
     width: 100%;
     height: 1rem;
     position: absolute;
     left: 0;
-    bottom: 0;
-    transition: width 0.5s ease-out;
+    top: 6rem;
+    transition: width 0.5s cubic-bezier(.74, .01, .33, 1.55);
 }
 
 h4 {
@@ -117,7 +117,7 @@ h4 {
     font-weight: bolder;
     color: #d65db1;
     letter-spacing: 3px;
-    margin-bottom: 4rem;
+    margin-bottom: 5rem;
 }
 
 form {
@@ -131,7 +131,7 @@ form div {
     padding: .5rem 1.25rem;
     padding-right: 10.51rem;
     font-size: 1rem;
-    border: 0.1rem solid rgba(97, 213, 255, 0.75);
+    border: 0.1rem solid var(--shadow-low-op);
     border-radius: 5rem;
     z-index: 2;
     pointer-events: none;
@@ -145,7 +145,7 @@ form input {
     width: 100%;
     height: 100%;
     font-family: 'Nunito', sans-serif;
-    font-size: 2rem;
+    font-size: 1.3rem;
     border: none;
 }
 
@@ -154,7 +154,7 @@ form input {
     left: 1.25rem;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 2rem;
+    font-size: 1.3rem;
     font-weight: 400;
     transition: all cubic-bezier(.68, .04, .39, 1.48) 0.3s;
     pointer-events: none;
@@ -177,22 +177,67 @@ form div input:focus+.placeholder {
 button {
     position: absolute;
     cursor: pointer;
-    bottom: 1.75rem;
-    transform: translateY(50%);
+    bottom: 0rem;
     right: 0rem;
     appearance: none;
     outline: none;
-    border-radius: 10rem;
-    /* 10rem 0; */
+    border-radius: 5rem;
     border: none;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-family: 'PT Sans Narrow', sans-serif;
-    color: rgb(97, 213, 255);
+    letter-spacing: 2px;
+    color: var(--shadow-low);
     height: 3.4rem;
     width: 10.5rem;
-    transition: background-color 0.1s ease-in-out;
+    box-shadow: none;
+    transform-origin: center center;
+    transition: all 50ms ease-in;
+    transition: letter-spacing 180ms cubic-bezier(.39, .32, .42, 1.95);
+    background-color: #eee;
 }
 
 button:active {
-    background-color: rgba(255, 255, 0, 0.5);
+    box-shadow:
+        inset 2px 2px 5px var(--shadow-low),
+        inset -3px -3px 5px var(--shadow-high);
+    color: rgb(15, 206, 209);
+    background-color: #eaeaea;
+}
+
+button:hover {
+    letter-spacing: -1px;
+}
+
+@media (max-width: 600px) {
+    section {
+        padding: 2.5rem;
+    }
+
+    .after {
+        top: 4.75rem;
+    }
+
+    h1 {
+        font-size: 4rem;
+    }
+
+    form div {
+        padding-right: 1.25rem;
+    }
+}
+
+@media (max-width: 500px) {
+    h1 {
+        font-size: 3rem;
+    }
+
+    .after {
+        top: 3.5rem;
+    }
+
+    button {
+        position: relative;
+        margin-top: 1rem;
+        width: 100%;
+    }
 }
