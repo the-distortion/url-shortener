@@ -10,15 +10,18 @@
             #ffc75f);
     --textured-gradient:
         repeating-linear-gradient(45deg,
-            rgba(175, 175, 175, 0.06) 0px, rgba(175, 175, 175, 0.06) 5px,
-            transparent 5px, transparent 10px),
+            rgba(189, 189, 189, 0.06) 0px, rgba(175, 175, 175, 0.06) 50px,
+            transparent 50px, transparent 100px),
+        repeating-linear-gradient(-45deg,
+            rgba(189, 189, 189, 0.06) 0px, rgba(175, 175, 175, 0.06) 50px,
+            transparent 50px, transparent 100px),
         linear-gradient(45deg, rgb(155, 235, 196), transparent),
         linear-gradient(90deg, rgb(153, 238, 197), transparent),
         linear-gradient(90deg, rgb(97, 213, 255), rgb(97, 213, 255));
     --shadow-low-op: #4a99b5a9;
     --shadow-high-op: #ccffe7;
     --shadow-low: #6ca0b3;
-    --shadow-high: #fff;
+    --shadow-high: #fffb;
 }
 
 *,
@@ -31,6 +34,7 @@
 
 body {
     background-color: #ddd;
+    background-image: linear-gradient(to right, rgba(153, 238, 197, 0.3), rgba(97, 213, 255, 0.3));
     display: grid;
     height: 100vh;
     place-items: center;
@@ -45,7 +49,7 @@ section {
     border-radius: 1rem;
     background-color: transparent;
     background-image: var(--textured-gradient);
-    background-size: 110%;
+    background-size: 100%;
     background-position: left;
     box-shadow:
         5px 5px 20px var(--shadow-low),
@@ -55,7 +59,7 @@ section {
     transition:
         box-shadow 0.5s ease-in-out,
         background-color 1s 0.2s ease-in-out,
-        background-position 0.45s ease-in-out,
+        background-size 5s ease-in-out,
         transform 0.45s ease-in-out;
 }
 
@@ -69,7 +73,8 @@ section:hover {
         inset 5px 5px 25px var(--shadow-high-op),
         inset -5px -5px 25px var(--shadow-low-op);
     transform: scale(1.02);
-    background-position: right;
+    background-size: 160%;
+    animation: gradMove 15s linear 4.5s infinite alternate;
 }
 
 h1 span {
@@ -199,12 +204,13 @@ button {
 button:active {
     box-shadow:
         inset 2px 2px 5px var(--shadow-low),
-        inset -3px -3px 5px var(--shadow-high);
+        inset -3px -3px 5px #fff;
     color: rgb(15, 206, 209);
     background-color: #eaeaea;
 }
 
 button:hover {
+    background-color: #efefef;
     letter-spacing: -1px;
 }
 
