@@ -138,9 +138,16 @@ form div {
     font-size: 1rem;
     border: 0.1rem solid var(--shadow-low-op);
     border-radius: 5rem;
-    /* z-index: 2; */
     pointer-events: none;
+    background-color: transparent;
     filter: drop-shadow(1px 1px 0px aqua);
+    transition: all 0.3s ease-in-out;
+}
+
+form div:hover,
+form div:focus-within,
+form div:focus {
+    background-color: #eee2;
 }
 
 form input {
@@ -152,6 +159,7 @@ form input {
     height: 100%;
     font-family: 'Nunito', sans-serif;
     font-size: 1.3rem;
+    color: midnightblue;
     border: none;
 }
 
@@ -162,6 +170,7 @@ form input {
     transform: translateY(-50%);
     font-size: 1.3rem;
     font-weight: 400;
+    color: midnightblue;
     transition: all cubic-bezier(.68, .04, .39, 1.48) 0.3s;
     pointer-events: none;
 }
