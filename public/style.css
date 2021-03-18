@@ -10,18 +10,18 @@
             #ffc75f);
     --textured-gradient:
         repeating-linear-gradient(45deg,
-            rgba(189, 189, 189, 0.06) 0px, rgba(175, 175, 175, 0.06) 50px,
+            rgba(189, 189, 189, 0.05) 0px, rgba(175, 175, 175, 0.05) 50px,
             transparent 50px, transparent 100px),
         repeating-linear-gradient(-45deg,
-            rgba(189, 189, 189, 0.06) 0px, rgba(175, 175, 175, 0.06) 50px,
+            rgba(189, 189, 189, 0.05) 0px, rgba(175, 175, 175, 0.05) 50px,
             transparent 50px, transparent 100px),
-        linear-gradient(45deg, rgb(155, 235, 196), transparent),
-        linear-gradient(90deg, rgb(153, 238, 197), transparent),
-        linear-gradient(90deg, rgb(97, 213, 255), rgb(97, 213, 255));
+        linear-gradient(45deg, rgb(116, 245, 182), transparent),
+        linear-gradient(90deg, rgb(116, 236, 178), transparent),
+        linear-gradient(90deg, rgb(42, 198, 255), rgb(97, 213, 255));
     --shadow-low-op: #4a99b5a9;
-    --shadow-high-op: #ccffe7;
+    --shadow-high-op: #ccfff4d5;
     --shadow-low: #6ca0b3;
-    --shadow-high: #fffb;
+    --shadow-high: #fffa;
 }
 
 *,
@@ -54,12 +54,12 @@ section {
     box-shadow:
         5px 5px 20px var(--shadow-low),
         -5px -5px 20px var(--shadow-high),
-        inset 8px 8px 25px var(--shadow-low-op),
-        inset -8px -8px 25px var(--shadow-high-op);
+        inset 8px 8px 35px var(--shadow-low-op),
+        inset -5px -5px 35px var(--shadow-high-op);
     transition:
         box-shadow 0.5s ease-in-out,
         background-color 1s 0.2s ease-in-out,
-        background-size 5s ease-in-out,
+        background-size 10s ease-in-out,
         transform 0.45s ease-in-out;
 }
 
@@ -70,11 +70,11 @@ section:hover {
     box-shadow:
         10px 10px 30px var(--shadow-low),
         -7px -7px 20px var(--shadow-high),
-        inset 5px 5px 25px var(--shadow-high-op),
-        inset -5px -5px 25px var(--shadow-low-op);
+        inset 5px 5px 35px var(--shadow-high-op),
+        inset -5px -5px 35px var(--shadow-low-op);
     transform: scale(1.02);
     background-size: 160%;
-    animation: gradMove 15s linear 4.5s infinite alternate;
+    animation: gradMove 15s linear 9.5s infinite alternate;
 }
 
 h1 span {
@@ -138,8 +138,9 @@ form div {
     font-size: 1rem;
     border: 0.1rem solid var(--shadow-low-op);
     border-radius: 5rem;
-    z-index: 2;
+    /* z-index: 2; */
     pointer-events: none;
+    filter: drop-shadow(1px 1px 0px aqua);
 }
 
 form input {
@@ -182,8 +183,8 @@ form div input:focus+.placeholder {
 button {
     position: absolute;
     cursor: pointer;
-    bottom: 0rem;
-    right: 0rem;
+    bottom: 0.1rem;
+    right: 0.1rem;
     appearance: none;
     outline: none;
     border-radius: 5rem;
@@ -191,9 +192,9 @@ button {
     font-size: 1.5rem;
     font-family: 'PT Sans Narrow', sans-serif;
     letter-spacing: 2px;
-    color: var(--shadow-low);
-    height: 3.4rem;
-    width: 10.5rem;
+    color: crimson;
+    height: 3.3rem;
+    width: 10.4rem;
     box-shadow: none;
     transform-origin: center center;
     transition: all 50ms ease-in;
@@ -205,7 +206,7 @@ button:active {
     box-shadow:
         inset 2px 2px 5px var(--shadow-low),
         inset -3px -3px 5px #fff;
-    color: rgb(15, 206, 209);
+    color: rgb(255, 23, 69);
     background-color: #eaeaea;
 }
 
