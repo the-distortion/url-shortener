@@ -3,24 +3,33 @@ const button = document.querySelector("button")
 const form = document.querySelector("form")
 const after = document.querySelector(".after")
 const h1span = document.querySelector("h1 span")
+const a_short = document.querySelector(".short_url")
 
 const handleSubmit = async e => {
     e.preventDefault()
 
-    const data = new FormData(e.target)
-    const values = Object.fromEntries(data)
+    grecaptcha.ready(function () {
+        grecaptcha.execute('6LdQ0oQaAAAAAHIc21zgrP4ghZgG2cgdx0X-WCRY', { action: 'submit' })
+            .then(async function (token) {
+                const data = new FormData(e.target)
+                let values = Object.fromEntries(data)
+                values.captcha = token
 
-    const res = await fetch("/api/url/shorten", {
-        method: "POST",
-        headers: { "Content-type": "application/json" },
-        body: JSON.stringify(values),
-    })
+                const res = await fetch("/api/url/shorten", {
+                    method: "POST",
+                    headers: { "Content-type": "application/json" },
+                    body: JSON.stringify(values),
+                })
 
-    const resdata = (await res).json()
-    console.log(await resdata);
-    alert("Short Url: " + (await resdata).shortUrl)
-
-    input.value = ""
+                const resdata = (await res).json()
+                console.log(await resdata);
+                // alert("Short Url: " + (await resdata).shortUrl)
+                a_short.innerHTML = "Short Url: " + (await resdata).shortUrl
+                a_short.href = (await resdata).shortUrl
+                a_short.style.opacity = "1"
+                input.value = ""
+            });
+    });
 }
 
 form.addEventListener("submit", handleSubmit)
@@ -38,14 +47,27 @@ button.addEventListener('focusout', () => {
     after.style.width = "100%"
 })
 
-// const sectionStyle = e => {
-//     console.log("changing bg");
-//     e.target.style.background = "linear-gradient(-45deg, #cacaca, #f0f0f0)";
-//     // e.target.style.boxShadow = "20px 20px 60px #bebebe,-20px -20px 60px #ffffff";
-// }
-// section.addEventListener('mouseleave', e => {
-//     e.target.style.background = "transparent"
-//     // e.target.style.boxShadow = "20px 20px 60px #bebebe,-20px -20px 60px #ffffff, 1px 2px 3px rgba(0, 0, 0, .5)";
-// })
+/**
+ * Wait for an element before resolving a promise
+ * @param {String} querySelector - Selector of element to wait for
+ * @param {Integer} timeout - Milliseconds to wait before timing out, or 0 for no timeout              
+ */
+const waitForRecaptchaContainer = (timeout = 0) => {
+    const startTime = new Date().getTime();
+    return new Promise((resolve, reject) => {
+        const timer = setInterval(() => {
+            const now = new Date().getTime();
+            const recaptchaContainer = document.querySelector(".grecaptcha-badge").parentElement
+            if (recaptchaContainer) {
+                clearInterval(timer);
+                recaptchaContainer.style.position = "absolute"
+                resolve();
+            } else if (timeout && now - startTime >= timeout) {
+                clearInterval(timer);
+                reject();
+            }
+        }, 100);
+    });
+}
 
-// document.styleSheets[0].insertRule(`section:hover .after { width: ${document.querySelector('h1 span').offsetWidth}px;}`, 0);
+waitForRecaptchaContainer(5000)

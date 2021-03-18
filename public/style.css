@@ -10,18 +10,18 @@
             #ffc75f);
     --textured-gradient:
         repeating-linear-gradient(45deg,
-            rgba(189, 189, 189, 0.05) 0px, rgba(175, 175, 175, 0.05) 50px,
+            rgba(189, 189, 189, 0.06) 0px, rgba(175, 175, 175, 0.06) 50px,
             transparent 50px, transparent 100px),
         repeating-linear-gradient(-45deg,
-            rgba(189, 189, 189, 0.05) 0px, rgba(175, 175, 175, 0.05) 50px,
+            rgba(189, 189, 189, 0.06) 0px, rgba(175, 175, 175, 0.06) 50px,
             transparent 50px, transparent 100px),
         linear-gradient(45deg, rgb(116, 245, 182), transparent),
         linear-gradient(90deg, rgb(116, 236, 178), transparent),
         linear-gradient(90deg, rgb(42, 198, 255), rgb(97, 213, 255));
-    --shadow-low-op: #4a99b5a9;
-    --shadow-high-op: #ccfff4d5;
+    --shadow-low-op: #4a99b5c5;
+    --shadow-high-op: #ccfff4e5;
     --shadow-low: #6ca0b3;
-    --shadow-high: #fffa;
+    --shadow-high: #fff;
 }
 
 *,
@@ -49,17 +49,16 @@ section {
     border-radius: 1rem;
     background-color: transparent;
     background-image: var(--textured-gradient);
-    background-size: 100%;
+    background-size: 160%;
     background-position: left;
     box-shadow:
         5px 5px 20px var(--shadow-low),
         -5px -5px 20px var(--shadow-high),
-        inset 8px 8px 35px var(--shadow-low-op),
-        inset -5px -5px 35px var(--shadow-high-op);
+        inset 8px 8px 25px var(--shadow-low-op),
+        inset -5px -5px 25px var(--shadow-high-op);
     transition:
         box-shadow 0.5s ease-in-out,
         background-color 1s 0.2s ease-in-out,
-        background-size 10s ease-in-out,
         transform 0.45s ease-in-out;
 }
 
@@ -70,11 +69,10 @@ section:hover {
     box-shadow:
         10px 10px 30px var(--shadow-low),
         -7px -7px 20px var(--shadow-high),
-        inset 5px 5px 35px var(--shadow-high-op),
-        inset -5px -5px 35px var(--shadow-low-op);
+        inset 5px 5px 25px var(--shadow-high-op),
+        inset -5px -5px 25px var(--shadow-low-op);
     transform: scale(1.02);
-    background-size: 160%;
-    animation: gradMove 15s linear 9.5s infinite alternate;
+    animation: gradMove 15s linear infinite alternate;
 }
 
 h1 span {
@@ -123,6 +121,22 @@ h4 {
     color: #d65db1;
     letter-spacing: 3px;
     margin-bottom: 5rem;
+}
+
+.short_url {
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 1.75rem;
+    opacity: 0;
+    color: crimson;
+    display: inherit;
+    text-align: center;
+    margin-top: 2rem;
+    transition: all 0.5s ease-in-out;
+}
+
+.short_url:active {
+    color: rgb(255, 23, 69);
 }
 
 form {

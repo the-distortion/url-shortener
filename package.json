@@ -13,6 +13,7 @@
     "config": "^3.3.6",
     "express": "^4.17.1",
     "mongoose": "^5.12.0",
+    "node-fetch": "^2.6.1",
     "shortid": "^2.2.16",
     "valid-url": "^1.0.9"
   },
