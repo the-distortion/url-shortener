@@ -26,6 +26,7 @@ const handleSubmit = async e => {
                 // alert("Short Url: " + (await resdata).shortUrl)
                 a_short.innerHTML = "Short Url: " + window.location.href + (await resdata).urlCode
                 a_short.href = window.location.href + (await resdata).urlCode
+                a_short.style.pointerEvents = "all"
                 a_short.style.opacity = "1"
                 input.value = ""
             });

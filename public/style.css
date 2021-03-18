@@ -126,6 +126,7 @@ h4 {
 .short_url {
     text-decoration: none;
     cursor: pointer;
+    pointer-events: none;
     font-size: 1.75rem;
     opacity: 0;
     color: crimson;
@@ -133,6 +134,7 @@ h4 {
     text-align: center;
     margin-top: 2rem;
     transition: all 0.5s ease-in-out;
+    word-wrap: break-word;
 }
 
 .short_url:active {
