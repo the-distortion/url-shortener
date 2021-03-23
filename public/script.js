@@ -21,8 +21,13 @@ const handleSubmit = async e => {
                     body: JSON.stringify(values),
                 })
 
-                const resdata = (await res).json()
+                const resdata = await res.json()
                 console.log(await resdata);
+
+                if (!resdata.urlCode) {
+                    return alert(resdata)
+                }
+
                 // alert("Short Url: " + (await resdata).shortUrl)
                 a_short.innerHTML = "Short Url: " + window.location.href + (await resdata).urlCode
                 a_short.href = window.location.href + (await resdata).urlCode
